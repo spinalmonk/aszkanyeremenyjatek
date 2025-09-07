@@ -1,6 +1,6 @@
 // ===== Beállítások =====
 const SPIN_INTERVAL_MS  = 70;            // frissítés sebessége az aktuális oszlopnál
-const SPIN_DURATION_MS  = 5 * 60 * 1000; // 5 perc / oszlop
+const SPIN_DURATION_MS  = 300000; // 5 perc / oszlop
 const UNIQUE_WINNERS    = true;          // próbáljon különböző neveket adni
 const ORDER             = [0, 2, 1];     // pörgés sorrend: bal -> jobb -> közép
 
@@ -51,7 +51,7 @@ function updateStatus() {
   if (left)  parts.push(`3. ${left}`);
   if (right) parts.push(`2. ${right}`);
   if (middle) parts.push(`1. ${middle}`);
-  statusEl.textContent = parts.length ? parts.join(" ") : "Készen áll";
+  statusEl.textContent = parts.length ? parts.join(" ") : "⏳05:00";
 }
 
 // --- visszaszámláló a status helyén ---
