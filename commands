@@ -1,0 +1,4 @@
+git status
+git add .
+git commit -m "add feature X or save progress"
+git push origin main

@@ -17,7 +17,7 @@ let NAMES = [];
 let spinning = false;
 let spinTimer = null;
 
-let winners = ["", "", ""]; // oszloponkénti végleges középső név
+let winners = [" ", " ", " "]; // oszloponkénti végleges középső név
 let nextIndex = 0;          // hanyadik oszlop jön (ORDER indexe)
 let lockedCols = [false, false, false]; // kipörgött oszlopok
 
@@ -37,8 +37,16 @@ function getColEls(col){
 }
 
 function updateStatus() {
-  const shown = winners.filter(Boolean);
-  statusEl.textContent = shown.length ? shown.join(" | ") : "Pörgetésre kész";
+  // winners: [bal, közép, jobb]
+  const [left, middle, right] = winners;
+
+  // csak azok kerülnek be, amik már tényleg kipörögtek (nem "")
+  const parts = [];
+  if (left)  parts.push(`3. ${left}`);
+  if (right) parts.push(`2. ${right}`);
+  if (middle) parts.push(`1. ${middle}`);
+
+  statusEl.textContent = parts.length ? parts.join(" ") : "Pörgetésre kész";
 }
 
 // ===== Nevek betöltése =====
@@ -104,6 +112,9 @@ function spinOne(){
     }
     midEl.textContent = pick;
 
+    // felfedés
+    midEl.classList.add("revealed");
+
     // ez az oszlop „zárolva”
     winners[col] = pick;
     lockedCols[col] = true;
@@ -124,7 +135,10 @@ function resetMachine(){
   winners = ["","",""];
   lockedCols = [false,false,false];
   nextIndex = 0;
-  document.querySelectorAll(".cell").forEach(c => c.textContent = randItem(NAMES));
+  document.querySelectorAll(".cell").forEach(c => {
+    c.textContent = randItem(NAMES);
+    c.classList.remove("revealed");
+  });
   updateStatus();
 }
 
