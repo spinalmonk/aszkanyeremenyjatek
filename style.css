@@ -1,0 +1,170 @@
+:root{
+  --bg:#161616;
+  --bezel:#3afff2;
+  --bezel-edge:#39cec4;
+  --bezel-shadow:#114a46;
+  --glass:#1f1f1f;
+  --glass-edge:#0c0c0c;
+  --led-bg:#101010;
+  --led-glow:#2bff3a;
+  --mid-accent:#6fb6ff;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+    background: url('hatter.jpg');
+    background-size: 100%;
+  color:#e9e9e9;
+  font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif;
+  display:grid; place-items:center;
+}
+
+.wrap{display:grid; gap:18px}
+
+.machine{
+  position:relative;
+  width:min(92vw,420px);
+  height:260px;
+}
+
+.bezel{
+  position:absolute; inset:0 40px 0 0;
+  border-radius:18px;
+  background: linear-gradient(180deg,var(--bezel),#3afff2 40%,#3afff2e6 60%, var(--bezel-edge));
+  box-shadow:
+    inset 0 4px 8px rgba(255,255,255,.25),
+    inset 0 -6px 10px var(--bezel-shadow),
+    0 14px 24px rgba(0,0,0,.5);
+  padding:18px 18px 28px;
+}
+
+.viewport{
+  position:relative;
+  height:58%;
+  border-radius:12px;
+  background: linear-gradient(180deg,#2c2c2c,#1a1a1a);
+  box-shadow:
+    inset 0 4px 10px rgba(255,255,255,.08),
+    inset 0 -6px 16px rgba(0,0,0,.75);
+  padding:10px;
+  display:grid; place-items:center;
+  border:2px solid var(--glass-edge);
+  overflow:hidden;
+}
+
+/* 3×3 rács */
+.grid{
+  width:100%;
+  height:100%;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+  filter:saturate(.95);
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8f8;
+  border: 2px solid #b8b8b8;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: clamp(10px, 2.5vw, 14px); /* kisebb betűméret */
+  color: #222;
+  padding: 2px 4px;
+  text-align: center;
+  word-break: break-word;  /* törje, ha hosszú */
+  overflow: hidden;
+  box-shadow: inset 0 0 10px rgba(0,0,0,.06);
+}
+
+
+/* a középső sor kap halvány kékes fóliát */
+.mid{ background:#b0b0b0; border-color:#767676; }
+
+/* .hotline{
+  pointer-events:none;
+  position:absolute; left:12px; right:12px;
+  top:calc(50% - 28px); height:56px;
+  border:2px dashed rgba(111,182,255,.5);
+  border-radius:8px;
+} */
+
+/* LED számláló */
+.meter{
+  margin-top:30px;
+  background:linear-gradient(180deg,#0f0f0f,#0a0a0a);
+  border:3px solid #2b2b2b;
+  border-radius:10px;
+  height: 50px;
+  display:flex; align-items:center; justify-content:flex-end;
+  gap:10px;
+  padding:0 14px;
+  box-shadow:
+    inset 0 2px 12px rgba(0,0,0,.8),
+    inset 0 0 16px rgba(0,0,0,.6);
+}
+.meter .dots{
+  opacity:.25; letter-spacing:.2em; font-family:ui-monospace,monospace;
+}
+.meter .value{
+  font-family:ui-monospace,monospace;
+  font-weight:800;
+  color: var(--led-glow);
+  text-shadow: 0 0 6px var(--led-glow), 0 0 14px var(--led-glow);
+  font-size:20px;
+}
+
+/* Kar a jobb oldalon */
+.lever{
+  position:absolute; right:0; top:0; bottom:0;
+  width:44px; border:0; background:transparent; cursor:pointer;
+}
+.lever::before{
+  content:""; position:absolute; right:12px; top:22px; bottom:22px; width:10px;
+  background:linear-gradient(90deg,#707070,#a0a0a0 50%,#707070);
+  border-radius:6px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,.6);
+}
+.lever::after{
+  content:""; position:absolute; right:2px; top:8px; width:28px; height:28px;
+  background: radial-gradient(circle at 30% 30%, #ff6b6b, #d40000 70%);
+  border-radius:99px; box-shadow:0 3px 8px rgba(0,0,0,.5);
+  transition: transform .12s ease;
+}
+.lever:active::after{ transform: translateY(140px); }
+
+.controls{
+  display:flex; gap:12px; align-items:center; justify-content:center;
+}
+button#spinBtn{
+  padding:10px 14px; border:0; border-radius:10px; cursor:pointer;
+  background:linear-gradient(180deg,#ffdf7a,#ff9b4a);
+  color:#6a1400; font-weight:900;
+  box-shadow:0 6px 0 #a34213, 0 10px 18px rgba(0,0,0,.35);
+}
+button#spinBtn:disabled{ opacity:.55; cursor:not-allowed; box-shadow:0 6px 0 #6b6b6b; }
+
+.status{
+  font-family: ui-monospace, monospace;
+  font-weight: 800;
+  color: var(--led-glow);
+  text-shadow: 0 0 6px var(--led-glow), 0 0 14px var(--led-glow);
+  font-size: 13px;
+}
+
+/* pörgés effekt */
+.cell.rolling {
+  filter: blur(1px) contrast(1.05);
+  transition: filter 0.2s;
+}
+
+.grid.spinning .mid{ animation:pulse .32s linear infinite; }
+@keyframes pulse{
+  0%{ box-shadow:0 0 0 rgba(111,182,255,0) }
+  50%{ box-shadow:0 0 16px rgba(111,182,255,.85) }
+  100%{ box-shadow:0 0 0 rgba(111,182,255,0) }
+}

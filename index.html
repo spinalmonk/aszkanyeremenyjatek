@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Név-slot</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <section class="machine">
+      <!-- narancs keret -->
+      <div class="bezel">
+        <!-- üveg/ablak -->
+        <div class="viewport">
+          <div id="grid" class="grid">
+            <!-- 3×3 cella -->
+            <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+            <div class="cell mid" id="mid0"></div><div class="cell mid" id="mid1"></div><div class="cell mid" id="mid2"></div>
+            <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+          </div>
+          <!-- középső sor kijelölő keret -->
+          <!-- <div class="hotline"></div> -->
+        </div>
+
+        <!-- alul számláló -->
+        <div class="meter">
+            <span id="status" class="status">Készen áll</span>
+        </div>
+      </div>
+
+      <!-- jobb oldali kar -->
+      <button id="lever" class="lever" aria-label="Pörgetés kar"></button>
+    </section>
+
+    <!-- <p id="status" class="status"></p> -->
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
