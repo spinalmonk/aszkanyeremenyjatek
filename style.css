@@ -189,3 +189,19 @@ button#spinBtn:disabled{ opacity:.55; cursor:not-allowed; box-shadow:0 6px 0 #6b
   50%{ box-shadow:0 0 16px rgba(111,182,255,.85) }
   100%{ box-shadow:0 0 0 rgba(111,182,255,0) }
 }
+
+.labels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;              /* távolság a feliratok között */
+  margin-bottom: 8px;     /* távolság a grid és a feliratok között */
+  text-align: center;
+}
+
+.label {
+  font-family: 'Press Start 2P', monospace; /* vagy amit szeretnél */
+  font-size: 14px;
+  font-weight: bold;
+  color: #000000;         /* szín */
+  text-shadow: 0 0 4px #000; /* kis árnyék */
+}
