@@ -6,7 +6,7 @@
   --glass:#1f1f1f;
   --glass-edge:#0c0c0c;
   --led-bg:#101010;
-  --led-glow:#2200ff;
+  --led-glow:#0ac4bb;
   --mid-accent:#6fb6ff;
 }
 
@@ -39,7 +39,6 @@ h1 {
 .wrap{display:grid; gap:18px}
 
 .machine{
-  margin-top: -200px;
   position:relative;
   width:min(92vw,420px);
   height:260px;

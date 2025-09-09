@@ -120,7 +120,7 @@ function spinOne(){
 
   // kar hang
   if (leverSound){
-    try { leverSound.currentTime = 0; leverSound.play(); } catch {}
+    try { leverSound.volume = 0.3; leverSound.currentTime = 0; leverSound.play(); } catch {}
   }
 
   if (NAMES.length === 0) return;
@@ -150,7 +150,11 @@ function spinOne(){
 
   // pörgés hang indítása
   if (spinSound){
-    try { spinSound.currentTime = 0; spinSound.play(); } catch {}
+    try {
+      spinSound.volume = 0.3;
+      spinSound.currentTime = 0; 
+      spinSound.play();
+     } catch {}
   }
 
   // vizuális pörgés: csak ezt a 3 cellát "tekerjük"
